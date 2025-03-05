@@ -3,28 +3,27 @@ import fetchData from "./utils/fetchData";
 import Header from "./components/Header/Header";
 import GameList from "./components/GameList/GameList";
 import { URLMatches } from "./utils/urls";
-import { IMatch, ServerError } from "./types/types";
+import { IMatch } from "./types/types";
 import { isApiResponse } from "./types/typeGuards";
 
 function App() {
   const [matches, setMatches] = useState<IMatch[] | null>(
     null,
   );
-  const [error, setError] = useState<ServerError | null>(
-    null,
-  );
+  const [isError, setIsError] = useState(false);
 
   const fetchMatches = () => {
     fetchData(URLMatches)
       .then((data) => {
         if (isApiResponse(data)) {
           setMatches(data.data.matches as IMatch[]);
+          setIsError(false);
         } else {
-          setError(data as ServerError);
+          setIsError(true);
         }
       })
-      .catch((error) => {
-        setError(error as ServerError);
+      .catch(() => {
+        setIsError(true);
       });
   };
 
@@ -34,7 +33,7 @@ function App() {
 
   return (
     <div className="app">
-      <Header onRefresh={fetchMatches} error={error} />
+      <Header onRefresh={fetchMatches} isError={isError} />
       <GameList matches={matches} />
     </div>
   );

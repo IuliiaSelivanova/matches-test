@@ -1,23 +1,31 @@
-export default async function fetchData(url: string) {
+import {
+  ApiResponse,
+  ServerError,
+} from "../types/types.ts";
+
+export default async function fetchData(
+  url: string,
+): Promise<ApiResponse | ServerError> {
   try {
     const response = await fetch(url);
-    const text = await response.text();
-    console.log(text);
     if (!response.ok) {
-      if (response.status === 404) {
-        console.warn("Ошибка 404: Данные не найдены");
-        return null;
-      }
       throw new Error(
         `Ошибка ${response.status}: ${response.statusText}`,
       );
     }
     return await response.json();
   } catch (error) {
-    console.log(
-      "Ошибка: не удалось загрузить информацию",
-      error,
-    );
-    return null;
+    if (
+      error &&
+      typeof error === "object" &&
+      "message" in error &&
+      "statusCode" in error
+    ) {
+      return error as ServerError;
+    }
+    return {
+      message: "Неизвестная ошибка при загрузке данных",
+      statusCode: 500,
+    };
   }
 }

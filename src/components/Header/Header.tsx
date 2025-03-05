@@ -1,19 +1,27 @@
 import btnIcon from "../../assets/icon-refresh.svg";
-import errorIcon from "../../assets/icon-error.png";
 import "../../styles/header.css";
+import React from "react";
+import ErrorCard from "../Error/ErrorCard";
+import { ServerError } from "../../types/types";
 
-const Header = () => {
+type IHeaderProps = {
+  onRefresh: () => void;
+  error: ServerError | null;
+};
+
+const Header: React.FunctionComponent<IHeaderProps> = ({
+  onRefresh,
+  error,
+}) => {
   return (
     <header className="header d-flex justify-content-between">
       <h1 className="header__title">Match Tracker</h1>
       <div className="header__controls d-flex">
-        <div className="error d-flex align-items-center">
-          <img src={errorIcon} alt="error icon" />
-          <p>Ошибка: не удалось загрузить информацию</p>
-        </div>
+        {error && <ErrorCard />}
         <button
           type="button"
           className="btn-refresh btn d-flex justify-content-center align-items-center flex-nowrap"
+          onClick={onRefresh}
         >
           Обновить
           <img src={btnIcon} alt="loading icon" />

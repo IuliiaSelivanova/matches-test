@@ -1,45 +1,42 @@
-// import { useEffect, useState } from "react";
-// import fetchData from "./utils/fetchData";
+import { useEffect, useState } from "react";
+import fetchData from "./utils/fetchData";
 import Header from "./components/Header/Header";
 import GameList from "./components/GameList/GameList";
+import { URLMatches } from "./utils/urls";
+import { IMatch, ServerError } from "./types/types";
+import { isApiResponse } from "./types/typeGuards";
 
 function App() {
-  // const [matches, setMatches] = useState<object | null>(
-  //   null,
-  // );
-  // const [error, setError] = useState<string | null>(null);
+  const [matches, setMatches] = useState<IMatch[] | null>(
+    null,
+  );
+  const [error, setError] = useState<ServerError | null>(
+    null,
+  );
 
-  // useEffect(() => {
-  //   fetchData(
-  //     "https://app.ftoyd.com/fronttemp-service/fronttemp",
-  //   )
-  //     .then((data) => {
-  //       if (
-  //         data &&
-  //         data.ok &&
-  //         data.data &&
-  //         data.data.matches
-  //       ) {
-  //         setMatches(data);
-  //         console.log(data);
-  //       } else {
-  //         setError(
-  //           "Ошибка: данные отсутствуют или формат неверный.",
-  //         );
-  //       }
-  //     })
-  //     .catch((error) =>
-  //       console.error("Ошибка загрузки данных", error),
-  //     );
-  // }, []);
+  const fetchMatches = () => {
+    fetchData(URLMatches)
+      .then((data) => {
+        if (isApiResponse(data)) {
+          setMatches(data.data.matches as IMatch[]);
+        } else {
+          setError(data as ServerError);
+        }
+      })
+      .catch((error) => {
+        setError(error as ServerError);
+      });
+  };
+
+  useEffect(() => {
+    fetchMatches();
+  }, []);
 
   return (
-    // <div className="container">
     <div className="app">
-      <Header />
-      <GameList />
+      <Header onRefresh={fetchMatches} error={error} />
+      <GameList matches={matches} />
     </div>
-    // </div>
   );
 }
 

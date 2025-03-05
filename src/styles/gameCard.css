@@ -44,12 +44,6 @@
 }
 
 @media screen and (max-width: 630px) {
-  .gameCard__team img {
-    width: 28px;
-  }
-}
-
-@media screen and (max-width: 430px) {
   .gameCard {
     padding: 8px;
   }
@@ -58,6 +52,9 @@
   }
   .gameCard__team--home img {
     margin-left: 6px;
+  }
+  .gameCard__team img {
+    width: 28px;
   }
   .gameCard__score p {
     margin-bottom: 7px;

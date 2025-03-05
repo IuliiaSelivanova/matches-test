@@ -1,0 +1,16 @@
+/* Сообщение об ошибке */
+.error {
+  padding: 16px;
+  background: var(--color-background-card);
+  font-weight: var(--font-weight-medium);
+  font-size: 1.125rem;
+  border-radius: var(--border-radius);
+  margin-right: 12px;
+}
+.error img {
+  width: 28px;
+  margin-right: 10px;
+}
+.error p {
+  margin: 0;
+}

@@ -1,4 +1,5 @@
 import errorIcon from "../../assets/icon-error.png";
+import "../../styles/error.css";
 
 const ErrorCard = () => {
   return (

@@ -1,3 +1,4 @@
+/* Карточка с игрой */
 .gameCard {
   background: var(--color-background-card);
   border-radius: var(--border-radius);
@@ -8,6 +9,7 @@
   margin-bottom: 12px;
 }
 
+/* Блоки с командами */
 .gameCard__team--away img {
   margin-right: 17px;
 }
@@ -24,10 +26,13 @@
   width: 48px;
 }
 
+/* Счет матча */
 .gameCard__score p {
   margin-bottom: 9px;
   font-size: 1.25rem;
 }
+
+/* Бэйдж со статусом */
 .gameCard__status {
   font-size: 0.75rem;
   padding: 8px 34px;
@@ -43,6 +48,7 @@
   background-color: var(--color-card-status-preparing);
 }
 
+/* Media запросы */
 @media screen and (max-width: 630px) {
   .gameCard {
     padding: 8px;

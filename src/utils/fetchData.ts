@@ -3,15 +3,19 @@ import {
   ServerError,
 } from "../types/types.ts";
 
+// Функция получения данных с сервера
 export default async function fetchData(
   url: string,
 ): Promise<ApiResponse | ServerError> {
   try {
     const response = await fetch(url);
     if (!response.ok) {
-      throw new Error(
-        `Ошибка ${response.status}: ${response.statusText}`,
-      );
+      const errorData = await response.json();
+      throw {
+        message:
+          errorData.message || "Ошибка при загрузке данных",
+        statusCode: response.status,
+      } as ServerError;
     }
     return await response.json();
   } catch (error) {

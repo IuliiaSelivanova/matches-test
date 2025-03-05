@@ -1,3 +1,4 @@
+/* Header */
 .header {
   margin-bottom: 20px;
 }
@@ -20,7 +21,7 @@
   cursor: pointer;
 }
 .btn-refresh img {
-  padding-left: 10px;
+  margin-left: 10px;
   width: 26px;
 }
 
@@ -29,15 +30,28 @@
   background-color: var(--color-btn-refresh-hover);
 }
 
-.btn-refresh.disabled,
+.btn-refresh.loading,
 :disabled {
   background-color: var(--color-btn-refresh-hover);
-  opacity: 0.6;
+  opacity: 0.7;
   cursor: not-allowed;
 }
 
 /* Анимация кнопки */
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
+.btn-refresh img.loading {
+  animation: loading 1s linear infinite;
+}
+
+/* Media запросы */
 @media screen and (max-width: 880px) {
   .header__controls {
     flex-direction: column-reverse;

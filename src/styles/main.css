@@ -17,6 +17,7 @@
   font-style: italic;
 }
 
+/* Переменные */
 :root {
   /* Fonts */
   --font-family-title: "Tactic Sans";
@@ -42,6 +43,7 @@
   --border-radius: 4px;
 }
 
+/* Общие стили */
 html,
 body {
   font-family: var(--font-family-primary);
@@ -57,7 +59,6 @@ body {
   padding: 0;
 }
 
-/* Common */
 .d-flex {
   display: flex;
 }
@@ -80,6 +81,7 @@ body {
   flex-direction: column;
 }
 
+/* Media запрос */
 @media screen and (max-width: 630px) {
   html,
   body {

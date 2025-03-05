@@ -1,0 +1,51 @@
+/* Fonts */
+/* Inter */
+@import url("https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap");
+
+/* Tactic Sans */
+@font-face {
+  font-family: "Tactic Sans";
+  src: url("TacticSans-BlkIt.eot");
+  src: local("Tactic Sans Black Italic"),
+    local("TacticSans-BlkIt"),
+    url("./assets//fonts/tactic-sans/TacticSans-BlkIt.eot?#iefix")
+      format("embedded-opentype"),
+    url("./assets//fonts/tactic-sans/TacticSans-BlkIt.woff2")
+      format("woff2"),
+    url("./assets//fonts/tactic-sans/TacticSans-BlkIt.woff")
+      format("woff"),
+    url("./assets//fonts/tactic-sans/TacticSans-BlkIt.ttf")
+      format("truetype");
+  font-weight: 900;
+  font-style: italic;
+}
+
+:root {
+  /* Fonts */
+  --font-family-title: "Tactic Sans";
+  --font-family-primary: "Inter", sans-serif;
+  --font-weight-semi: 600;
+  --font-weight-medium: 500;
+  --font-weight-black: 900;
+
+  /* Colors */
+  --color-background: #06080c;
+  --color-background-card: linear-gradient(
+    90deg,
+    rgba(15, 19, 24, 1) 0%,
+    rgba(10, 14, 18, 1) 100%
+  );
+  --color-text: #ffffff;
+  --color-card-status-live: #43ad28;
+  --color-card-status-finished: #eb0237;
+  --color-card-status-preparing: #eb6402;
+  --color-btn-refresh: #eb0237;
+}
+
+body {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-semi);
+  font-size: 16px;
+  color: var(--color-text);
+  background-color: var(--color-background);
+}

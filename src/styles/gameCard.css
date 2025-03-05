@@ -1,0 +1,70 @@
+.gameCard {
+  background: var(--color-background-card);
+  border-radius: var(--border-radius);
+  padding-inline: 36px;
+  padding-block: 19.5px;
+  border-radius: var(--border-radius);
+  cursor: default;
+  margin-bottom: 12px;
+}
+
+.gameCard__team--away img {
+  margin-right: 17px;
+}
+.gameCard__team--away {
+  margin-right: 8px;
+}
+.gameCard__team--home img {
+  margin-left: 17px;
+}
+.gameCard__team--home {
+  margin-left: 8px;
+}
+.gameCard__team img {
+  width: 48px;
+}
+
+.gameCard__score p {
+  margin-bottom: 9px;
+  font-size: 1.25rem;
+}
+.gameCard__status {
+  font-size: 0.75rem;
+  padding: 8px 34px;
+  border-radius: var(--border-radius);
+}
+.gameCard__status--live {
+  background-color: var(--color-card-status-live);
+}
+.gameCard__status--finished {
+  background-color: var(--color-card-status-finished);
+}
+.gameCard__status--preparing {
+  background-color: var(--color-card-status-preparing);
+}
+
+@media screen and (max-width: 630px) {
+  .gameCard__team img {
+    width: 28px;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .gameCard {
+    padding: 8px;
+  }
+  .gameCard__team--away img {
+    margin-right: 6px;
+  }
+  .gameCard__team--home img {
+    margin-left: 6px;
+  }
+  .gameCard__score p {
+    margin-bottom: 7px;
+    font-size: 1rem;
+  }
+  .gameCard__status {
+    font-size: 0.85rem;
+    padding: 4px 23px;
+  }
+}

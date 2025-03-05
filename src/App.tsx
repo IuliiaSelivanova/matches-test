@@ -34,10 +34,12 @@ function App() {
   // }, []);
 
   return (
-    <div className="container">
+    // <div className="container">
+    <div className="app">
       <Header />
       <GameList />
     </div>
+    // </div>
   );
 }
 

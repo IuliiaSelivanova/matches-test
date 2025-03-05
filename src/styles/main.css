@@ -5,16 +5,13 @@
 /* Tactic Sans */
 @font-face {
   font-family: "Tactic Sans";
-  src: url("TacticSans-BlkIt.eot");
   src: local("Tactic Sans Black Italic"),
-    local("TacticSans-BlkIt"),
-    url("./assets//fonts/tactic-sans/TacticSans-BlkIt.eot?#iefix")
-      format("embedded-opentype"),
-    url("./assets//fonts/tactic-sans/TacticSans-BlkIt.woff2")
+    local("Tactic-Sans-Black-Italic"),
+    url("../assets/fonts/tactic-sans/TacticSans-BlkIt.woff2")
       format("woff2"),
-    url("./assets//fonts/tactic-sans/TacticSans-BlkIt.woff")
+    url("../assets/fonts/tactic-sans/TacticSans-BlkIt.woff")
       format("woff"),
-    url("./assets//fonts/tactic-sans/TacticSans-BlkIt.ttf")
+    url("../assets/fonts/tactic-sans/TacticSans-BlkIt.ttf")
       format("truetype");
   font-weight: 900;
   font-style: italic;
@@ -40,12 +37,55 @@
   --color-card-status-finished: #eb0237;
   --color-card-status-preparing: #eb6402;
   --color-btn-refresh: #eb0237;
+  --color-btn-refresh-hover: #a01131;
+
+  --border-radius: 4px;
 }
 
+html,
 body {
   font-family: var(--font-family-primary);
   font-weight: var(--font-weight-semi);
   font-size: 16px;
   color: var(--color-text);
   background-color: var(--color-background);
+  line-height: 1.2;
+}
+
+.app {
+  margin: 42px;
+  padding: 0;
+}
+
+/* Common */
+.d-flex {
+  display: flex;
+}
+.justify-content-between {
+  justify-content: space-between;
+}
+.justify-content-center {
+  justify-content: center;
+}
+.align-items-center {
+  align-items: center;
+}
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+.flex-row-reverse {
+  flex-direction: row-reverse;
+}
+.flex-column {
+  flex-direction: column;
+}
+
+@media screen and (max-width: 630px) {
+  html,
+  body {
+    font-size: 14px;
+  }
+  .app {
+    margin: 32px 16px 0;
+  }
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import fetchData from "./utils/fetchData";
 import Header from "./components/Header/Header";
 import GameList from "./components/GameList/GameList";
@@ -12,7 +12,9 @@ function App() {
   );
   const [isError, setIsError] = useState(false);
 
-  const fetchMatches = async () => {
+  const fetchMatches = useCallback(async () => {
+    const controller = new AbortController();
+
     try {
       const data = await fetchData(URLMatches);
       if (isApiResponse(data)) {
@@ -21,14 +23,20 @@ function App() {
       } else {
         setIsError(true);
       }
-    } catch (error) {
-      setIsError(true);
+    } catch (error: unknown) {
+      if (
+        error instanceof Error &&
+        error.message !== "AbortError"
+      ) {
+        setIsError(true);
+      }
     }
-  };
+    return () => controller.abort();
+  }, []);
 
   useEffect(() => {
     fetchMatches();
-  }, []);
+  }, [fetchMatches]);
 
   return (
     <div className="app">

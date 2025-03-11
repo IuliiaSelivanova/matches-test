@@ -1,0 +1,31 @@
+.score p {
+  margin-bottom: 9px;
+  font-size: 1.25rem;
+}
+
+/* Бэйдж со статусом */
+.score__status {
+  font-size: 0.75rem;
+  padding: 8px 34px;
+  border-radius: var(--border-radius);
+}
+.score__status--live {
+  background-color: var(--color-card-status-live);
+}
+.score__status--finished {
+  background-color: var(--color-card-status-finished);
+}
+.score__status--preparing {
+  background-color: var(--color-card-status-preparing);
+}
+
+@media screen and (max-width: 630px) {
+  .gameCard__score p {
+    margin-bottom: 7px;
+    font-size: 1rem;
+  }
+  .gameCard__status {
+    font-size: 0.85rem;
+    padding: 4px 23px;
+  }
+}

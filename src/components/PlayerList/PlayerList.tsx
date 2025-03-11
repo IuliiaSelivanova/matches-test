@@ -1,5 +1,6 @@
 import { IPlayer } from "../../types/types";
 import PlayerCard from "../PlayerCard/PlayerCard";
+import "../../styles/playerList.css";
 
 interface PlayerListProps {
   players: IPlayer[];

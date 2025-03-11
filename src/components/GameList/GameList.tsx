@@ -9,7 +9,7 @@ const GameList: React.FunctionComponent<GameListProps> = ({
   matches,
 }) => {
   return (
-    <>
+    <div className="gameList">
       {matches ? (
         matches.map((match, index) => (
           <GameCard key={index} match={match} />
@@ -17,7 +17,7 @@ const GameList: React.FunctionComponent<GameListProps> = ({
       ) : (
         <div></div>
       )}
-    </>
+    </div>
   );
 };
 

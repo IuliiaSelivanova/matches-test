@@ -1,5 +1,6 @@
 import React from "react";
 import { TCheckStatus } from "../../types/types";
+import "../../styles/score.css";
 
 interface ScoreProps {
   homeScore: number;
@@ -16,17 +17,17 @@ const Score: React.FunctionComponent<ScoreProps> = ({
     switch (status) {
       case "Finished":
         return {
-          classname: "gameCard__status--live",
+          classname: "score__status--live",
           text: "Live",
         };
       case "Ongoing":
         return {
-          classname: "gameCard__status--finished",
+          classname: "score__status--finished",
           text: "Finished",
         };
       case "Scheduled":
         return {
-          classname: "gameCard__status--preparing",
+          classname: "score__status--preparing",
           text: "Match preparing",
         };
       default:
@@ -38,11 +39,11 @@ const Score: React.FunctionComponent<ScoreProps> = ({
   };
 
   return (
-    <div className="gameCard__score d-flex flex-column justify-content-center align-items-center">
+    <div className="score d-flex flex-column justify-content-center align-items-center">
       <p>{`${awayScore} : ${homeScore}`}</p>
 
       <div
-        className={`gameCard__status ${
+        className={`score__status ${
           checkStatus(status).classname
         }`}
       >

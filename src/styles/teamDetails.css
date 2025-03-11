@@ -2,7 +2,6 @@
 .teamDetails {
   flex-grow: 1;
   padding: 12px;
-  margin-right: 32px;
 }
 
 .teamDetails:last-of-type {
@@ -18,8 +17,8 @@
   margin-top: 8px;
 }
 
-@media screen and (min-width: 630px) {
-  .teamDetails__common {
-    padding: 12px;
+@media screen and (max-width: 1100px) {
+  .teamDetails {
+    padding: 0;
   }
 }

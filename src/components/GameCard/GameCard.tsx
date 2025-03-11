@@ -19,28 +19,47 @@ const GameCard: React.FunctionComponent<GameCardProps> = ({
   return (
     <section className="gameCard">
       <div
-        className="gameCard__common d-flex justify-content-between"
+        className="gameCard__common"
         onClick={() => setIsOpen(!isOpen)}
       >
         <div className="gameCard__team gameCard__team--away d-flex align-items-center">
           <img src={teamIcon} alt="icon team" />
           <p>{match.awayTeam.name}</p>
         </div>
-        <Score
-          homeScore={match.homeScore}
-          awayScore={match.awayScore}
-          status={match.status}
-        />
-        <div className="d-flex align-items-center">
-          <div className="gameCard__team gameCard__team--home d-flex flex-row-reverse align-items-center">
-            <img src={teamIcon} alt="icon team" />
-            <p>{match.homeTeam.name}</p>
-          </div>
+
+        <div className="gameCard__score">
+          <Score
+            homeScore={match.homeScore}
+            awayScore={match.awayScore}
+            status={match.status}
+          />
+        </div>
+
+        <div className="gameCard__team gameCard__team--home d-flex flex-row-reverse align-items-center">
+          <img src={teamIcon} alt="icon team" />
+          <p>{match.homeTeam.name}</p>
+        </div>
+
+        <div
+          className={`dropDownArrow dropDownArrow--desktop ${
+            isOpen && "open"
+          }`}
+        >
           <img src={dropdownIcon} alt="dropdown icon" />
         </div>
       </div>
 
-      {isOpen && <MatchDetails match={match} />}
+      <div className="gameCard__details d-flex">
+        {isOpen && <MatchDetails match={match} />}
+        <div
+          className={`dropDownArrow dropDownArrow--mobile ${
+            isOpen && "open"
+          }`}
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <img src={dropdownIcon} alt="dropdown icon" />
+        </div>
+      </div>
     </section>
   );
 };

@@ -4,13 +4,24 @@
   padding: 8px 24px;
   border-radius: var(--border-radius);
 
+  gap: 4px 6px;
   flex-grow: 1;
-  margin-right: 8px;
 }
-.player:last-of-type {
-  margin-right: 0px;
+
+/* Если username будет слишком длинный скрыть его по горизонтали */
+.player__username h3 {
+  max-width: 90px;
+  overflow-x: hidden;
 }
-/* Отступ от аватара */
-.player__username img {
-  margin-right: 8px;
+
+/* Отступ от аватарки игрока */
+.player__username {
+  gap: 8px;
+}
+
+@media screen and (max-width: 1720px) {
+  .player {
+    padding: 12px;
+    flex-direction: column;
+  }
 }

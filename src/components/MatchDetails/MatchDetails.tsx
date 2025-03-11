@@ -12,6 +12,7 @@ const MatchDetails: React.FunctionComponent<
   return (
     <div className="matchDetais d-flex justify-content-between">
       <TeamDetails team={match.awayTeam} />
+      <div className="dividedLine">VS</div>
       <TeamDetails team={match.homeTeam} />
     </div>
   );

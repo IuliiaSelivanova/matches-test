@@ -13,7 +13,7 @@ const TeamDetails: React.FunctionComponent<
     <div className="teamDetails d-flex flex-column">
       <PlayerList players={team.players} />
 
-      <div className="teamDetails__results d-flex">
+      <div className="teamDetails__results d-flex ">
         <div className="teamDetails__points d-flex align-items-center">
           <p className="text--medium">Points:</p>
           <p>+{team.points}</p>

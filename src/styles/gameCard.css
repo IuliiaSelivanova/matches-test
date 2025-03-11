@@ -9,7 +9,13 @@
   margin-bottom: 12px;
 }
 
+.gameCard__common {
+  cursor: pointer;
+}
 /* Блоки с командами */
+.gameCard__team {
+  margin-right: 12px;
+}
 .gameCard__team--away img {
   margin-right: 17px;
 }

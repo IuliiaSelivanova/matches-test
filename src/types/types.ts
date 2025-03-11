@@ -40,3 +40,9 @@ export interface IPlayer {
   kills: number;
   username: string;
 }
+
+// проверка статуса для вывода счета матчей (компонент Score)
+export type TCheckStatus = {
+  classname: string;
+  text: string;
+};

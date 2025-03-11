@@ -1,0 +1,25 @@
+/* Детали о командах (игроки + результаты игры) */
+.teamDetails {
+  flex-grow: 1;
+  padding: 12px;
+  margin-right: 32px;
+}
+
+.teamDetails:last-of-type {
+  margin-right: 0;
+}
+
+/* Результаты игры  */
+.teamDetails__results {
+  background-color: var(--color-background-card-details);
+  justify-content: space-evenly;
+  border-radius: var(--border-radius);
+  padding: 14px 0;
+  margin-top: 8px;
+}
+
+@media screen and (min-width: 630px) {
+  .teamDetails__common {
+    padding: 12px;
+  }
+}

@@ -5,8 +5,9 @@
 
 /* Бэйдж со статусом */
 .score__status {
+  width: 92px;
   font-size: 0.75rem;
-  padding: 8px 34px;
+  padding: 8px 0;
   border-radius: var(--border-radius);
 }
 .score__status--live {
@@ -25,7 +26,8 @@
     font-size: 1rem;
   }
   .gameCard__status {
+    width: 70px;
     font-size: 0.85rem;
-    padding: 4px 23px;
+    padding: 4px 0;
   }
 }

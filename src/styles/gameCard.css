@@ -81,8 +81,8 @@
   .gameCard {
     padding: 8px;
   }
-
   .gameCard__team {
+    font-size: 0.85rem;
     gap: 6px;
   }
   .gameCard__team img {

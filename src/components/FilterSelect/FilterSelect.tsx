@@ -15,7 +15,8 @@ const FilterSelect = () => {
   }) => {
     if (option.disabled) return;
     setSelectedOption(option.label);
-    setIsOpen(false);
+
+    // setIsOpen(false);
   };
 
   // закрытие dropdown-menu по клику все dropdown

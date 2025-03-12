@@ -5,31 +5,35 @@ import ErrorCard from "../Error/ErrorCard";
 import FilterOptions from "../FilterSelect/FilterSelect";
 
 type IHeaderProps = {
-  onRefresh: () => void;
+  // onRefresh: () => void;
   isError: boolean;
 };
 
 const Header: React.FunctionComponent<IHeaderProps> = ({
-  onRefresh,
+  // onRefresh,
   isError,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleRefresh = async () => {
     setIsLoading(true);
-    await onRefresh();
+    // await onRefresh();
     setIsLoading(false);
   };
 
+  // useEffect(() => {
+  //   fetchMatches();
+  // }, [fetchMatches]);
   return (
     <header className="header d-flex justify-content-between">
-      <div className="header__title d-flex align-items-center">
+      <div className="header__title d-flex">
         <h1 className="header__logo">Match Tracker</h1>
         <FilterOptions />
       </div>
 
       <div className="header__controls d-flex">
-        {isError && <ErrorCard />}
+        {/* {isError && <ErrorCard />} */}
+        {<ErrorCard />}
         <button
           type="button"
           className={`btn-refresh btn d-flex justify-content-center align-items-center flex-nowrap ${

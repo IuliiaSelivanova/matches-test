@@ -33,3 +33,25 @@ export default async function fetchData(
     };
   }
 }
+
+// const fetchMatches = useCallback(async () => {
+//   const controller = new AbortController();
+
+//   try {
+//     const data = await fetchData(URLMatches);
+//     if (isApiResponse(data)) {
+//       setMatches(data.data.matches as IMatch[]);
+//       setIsError(false);
+//     } else {
+//       setIsError(true);
+//     }
+//   } catch (error: unknown) {
+//     if (
+//       error instanceof Error &&
+//       error.message !== "AbortError"
+//     ) {
+//       setIsError(true);
+//     }
+//   }
+//   return () => controller.abort();
+// }, []);

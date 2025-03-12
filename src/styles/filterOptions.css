@@ -19,7 +19,6 @@
   transition: color 0.3s ease-in-out,
     background-color 0.3s ease-in-out;
   user-select: none;
-  margin-bottom: 8px;
   outline: none;
 }
 /* наведение на кнопку (hover, opened = off) */
@@ -107,4 +106,10 @@
   cursor: not-allowed;
   user-select: none;
   pointer-events: all;
+}
+
+@media screen and (max-width: 815px) {
+  .dropdown {
+    width: 100%;
+  }
 }

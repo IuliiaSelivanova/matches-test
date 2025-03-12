@@ -17,6 +17,7 @@ export interface IMatchesData {
 
 // матч
 export interface IMatch {
+  id: string;
   awayScore: number;
   awayTeam: ITeam;
   homeScore: number;
@@ -37,12 +38,23 @@ export interface ITeam {
 
 // игроки
 export interface IPlayer {
+  id?: string;
   kills: number;
   username: string;
 }
 
 // проверка статуса для вывода счета матчей (компонент Score)
 export type TCheckStatus = {
-  classname: string;
+  classname?: string;
   text: string;
 };
+
+// опции для фильтрации
+export interface IFilterOption {
+  label:
+    | "Все статусы"
+    | "Live"
+    | "Finished"
+    | "Match preparing";
+  disabled: boolean;
+}

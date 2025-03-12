@@ -1,11 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import "../../styles/filterOptions.css";
 import { filterOptions } from "../../utils/filterOptions";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../Redux/Store";
+import { filterMatches } from "../../Redux/features/matches/matchesSlice";
 
 const FilterSelect = () => {
-  const [selectedOption, setSelectedOption] = useState(
-    filterOptions[0].label,
+  const dispatch = useDispatch();
+  const selectedFilter = useSelector(
+    (state: RootState) => state.matches.filterOption,
   );
+
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -14,7 +19,7 @@ const FilterSelect = () => {
     disabled: boolean;
   }) => {
     if (option.disabled) return;
-    setSelectedOption(option.label);
+    dispatch(filterMatches(option.label));
 
     // setIsOpen(false);
   };
@@ -50,7 +55,7 @@ const FilterSelect = () => {
         }`}
         onClick={() => setIsOpen(!isOpen)}
       >
-        {selectedOption}
+        {selectedFilter}
       </button>
       {isOpen && (
         <ul className="dropdown-menu">
@@ -60,7 +65,7 @@ const FilterSelect = () => {
               className={`dropdown-item ${
                 option.disabled ? "disabled" : ""
               } ${
-                option.label === selectedOption
+                option.label === selectedFilter
                   ? "active"
                   : ""
               }`}

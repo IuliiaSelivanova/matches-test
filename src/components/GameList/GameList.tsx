@@ -1,18 +1,18 @@
-import { IMatch } from "../../types/types.ts";
+import { useSelector } from "react-redux";
 import GameCard from "../GameCard/GameCard.tsx";
+import { RootState } from "../../Redux/Store.ts";
 
-interface GameListProps {
-  matches: IMatch[] | null;
-}
+const GameList: React.FunctionComponent = () => {
+  // получение данных из Redux
+  const matches = useSelector(
+    (state: RootState) => state.matches.matches,
+  );
 
-const GameList: React.FunctionComponent<GameListProps> = ({
-  matches,
-}) => {
   return (
     <div className="gameList">
-      {matches ? (
-        matches.map((match, index) => (
-          <GameCard key={index} match={match} />
+      {matches.length > 0 ? (
+        matches.map((match) => (
+          <GameCard key={match.id} match={match} />
         ))
       ) : (
         <div></div>

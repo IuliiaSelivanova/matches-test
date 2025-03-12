@@ -10,3 +10,9 @@
 .error img {
   width: 28px;
 }
+
+@media screen and (max-width: 815px) {
+  .error {
+    width: 100%;
+  }
+}

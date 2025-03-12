@@ -26,13 +26,14 @@ const Header: React.FunctionComponent<IHeaderProps> = ({
   // }, [fetchMatches]);
   return (
     <header className="header d-flex justify-content-between">
-      <div className="header__title d-flex align-items-center">
+      <div className="header__title d-flex">
         <h1 className="header__logo">Match Tracker</h1>
         <FilterOptions />
       </div>
 
       <div className="header__controls d-flex">
-        {isError && <ErrorCard />}
+        {/* {isError && <ErrorCard />} */}
+        {<ErrorCard />}
         <button
           type="button"
           className={`btn-refresh btn d-flex justify-content-center align-items-center flex-nowrap ${

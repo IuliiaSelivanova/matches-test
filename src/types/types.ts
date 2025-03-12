@@ -17,7 +17,7 @@ export interface IMatchesData {
 
 // матч
 export interface IMatch {
-  id?: string;
+  id: string;
   awayScore: number;
   awayTeam: ITeam;
   homeScore: number;
@@ -38,6 +38,7 @@ export interface ITeam {
 
 // игроки
 export interface IPlayer {
+  id?: string;
   kills: number;
   username: string;
 }

@@ -8,11 +8,13 @@ import { formatStatus } from "../../../utils/formatStatus";
 interface MatchesState {
   matches: IMatch[];
   filterOption: string;
+  openMatchId: string | null;
 }
 
 const initialState: MatchesState = {
   matches: [],
   filterOption: "Все статусы",
+  openMatchId: null,
 };
 
 const matchesSlice = createSlice({
@@ -47,9 +49,21 @@ const matchesSlice = createSlice({
           action.payload,
       );
     },
+    toggleMatchOpen: (
+      state,
+      action: PayloadAction<string>,
+    ) => {
+      state.openMatchId =
+        state.openMatchId === action.payload
+          ? null
+          : action.payload;
+    },
   },
 });
 
-export const { setMatches, filterMatches } =
-  matchesSlice.actions;
+export const {
+  setMatches,
+  filterMatches,
+  toggleMatchOpen,
+} = matchesSlice.actions;
 export default matchesSlice.reducer;

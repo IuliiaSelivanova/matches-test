@@ -1,6 +1,5 @@
 import { Action, Middleware } from "@reduxjs/toolkit";
 import { setMatches } from "../features/matches/matchesSlice";
-import { v4 as uuidv4 } from "uuid";
 import { IMatch } from "../../types/types";
 import { SOCKET_URL } from "../../utils/urls";
 import { formatStatus } from "../../utils/formatStatus";
@@ -33,7 +32,8 @@ export const webSocketMiddleware: Middleware = (store) => {
         const matchesWithIds: IMatch[] = data.data.map(
           (match: IMatch) => ({
             ...match,
-            id: match.id ?? uuidv4(),
+            // устанавливаем id на уникальное значение match, поскольку с сервера не приходит
+            id: match.title,
           }),
         );
 
@@ -50,10 +50,9 @@ export const webSocketMiddleware: Middleware = (store) => {
           );
           store.dispatch(setMatches(filteredMatches));
         } else {
+          // сохраняем в store обновленные данные
           store.dispatch(setMatches(matchesWithIds));
         }
-
-        // сохраняем в store обновленные данные
       };
 
       socket.onclose = () => {

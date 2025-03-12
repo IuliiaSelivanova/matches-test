@@ -5,6 +5,7 @@ import { IMatch } from "../../types/types.ts";
 import dropdownIcon from "../../assets/arrow-drop.svg";
 import Score from "../Score/Score.tsx";
 import MatchDetails from "../MatchDetails/MatchDetails.tsx";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface GameCardProps {
   match: IMatch;
@@ -20,7 +21,11 @@ const GameCard: React.FunctionComponent<GameCardProps> = ({
   if (!match) return null;
 
   return (
-    <section className="gameCard">
+    <motion.section
+      className="gameCard"
+      layout
+      transition={{ type: "spring", stiffness: 120 }}
+    >
       <div
         className="gameCard__common"
         onClick={toggleMatch}
@@ -53,7 +58,19 @@ const GameCard: React.FunctionComponent<GameCardProps> = ({
       </div>
 
       <div className="gameCard__details d-flex">
-        {isOpen && <MatchDetails match={match} />}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              className="gameCard__details--flexGrow"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <MatchDetails match={match} />
+            </motion.div>
+          )}
+        </AnimatePresence>
         <div
           className={`dropDownArrow dropDownArrow--mobile ${
             isOpen && "open"
@@ -63,7 +80,7 @@ const GameCard: React.FunctionComponent<GameCardProps> = ({
           <img src={dropdownIcon} alt="dropdown icon" />
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

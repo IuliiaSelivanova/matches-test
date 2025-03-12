@@ -50,6 +50,10 @@
   display: none;
 }
 
+.gameCard__details--flexGrow {
+  flex-grow: 1;
+}
+
 /* Media запросы */
 @media screen and (max-width: 1100px) {
   .gameCard {

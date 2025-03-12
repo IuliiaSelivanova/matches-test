@@ -43,6 +43,11 @@
 }
 
 /* Общие стили */
+/* скрыт скроллбар */
+html {
+  scrollbar-width: none;
+}
+
 html,
 body {
   font-family: var(--font-family-primary);

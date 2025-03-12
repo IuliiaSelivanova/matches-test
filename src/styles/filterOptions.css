@@ -1,0 +1,110 @@
+.dropdown {
+  position: relative;
+  min-width: 170px;
+}
+
+/* Кнопка - Все стили (default, opened = off) */
+.btn__filter {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--border-radius);
+  border: none;
+  background-color: var(--color-background-card);
+  color: var(--color-btn-filter);
+  padding: 16px 20px 16px;
+  transition: color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+  user-select: none;
+  margin-bottom: 8px;
+  outline: none;
+}
+/* наведение на кнопку (hover, opened = off) */
+.btn__filter:hover {
+  border: none;
+  background-color: #0f1318;
+  color: var(--color-text);
+}
+/* фокус на кнопке (pressed, opened = off) */
+.btn__filter:focus {
+  background-color: var(--color-background-card);
+  border: 1px solid #171d25;
+  color: var(--color-text);
+}
+/* кнопка активна (default, opened = on) */
+.btn__filter.active {
+  border: none;
+  background-color: var(--color-background-card);
+  color: var(--color-btn-filter);
+}
+/* кнопка активна + наведение на кнопку (hover, opened = on) */
+.btn__filter.active:hover {
+  border: none;
+  background-color: #0f1318;
+  color: var(--color-text);
+}
+/* кнопка активна + фокус на кнопке (pressed, opened = on) */
+.btn__filter.active:focus {
+  border: 1px solid #171d25;
+  background-color: var(--color-background-card);
+  color: var(--color-text);
+}
+
+/* стрелка кнопки btn-filter */
+.dropdown-toggle::after {
+  border: none;
+  content: url("../assets//arrowdown-filter.svg");
+  height: 20px;
+  margin-left: 0;
+}
+/* стрелка при открытом дропдаун меню */
+.btn__filter.dropdown-toggle.active::after {
+  transform: rotate(180deg);
+}
+
+/* Дропдаун лист (default) */
+.dropdown-menu {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #0f1318;
+  border-radius: var(--border-radius);
+  color: var(--color-btn-filter);
+  filter: drop-shadow(0 2px 4px rgba(12, 15, 18, 0.35));
+  padding-block: 6px;
+}
+
+/* drop-item (default, active = off) */
+.dropdown-item {
+  background-color: #0f1318;
+  color: var(--color-btn-filter);
+  font-weight: var(--font-weight-medium);
+  padding: 12px;
+  cursor: pointer;
+}
+/* drop-item (hover, active = on) */
+.dropdown-item.active,
+.dropdown-item:hover {
+  border: none;
+  background-color: #11161d;
+  color: var(--color-text);
+}
+/* drop-item (pressed, active = off) */
+.dropdown-item:focus {
+  background-color: #0d1115;
+  color: var(--color-text);
+}
+/* drop-item (disabled, active = off) */
+.dropdown-item.disabled,
+.dropdown-item:disabled {
+  background-color: #0f1318;
+  color: #68696a;
+  cursor: not-allowed;
+  user-select: none;
+  pointer-events: all;
+}

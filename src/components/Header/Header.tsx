@@ -2,6 +2,7 @@ import btnIcon from "../../assets/icon-refresh.svg";
 import "../../styles/header.css";
 import React, { useState } from "react";
 import ErrorCard from "../Error/ErrorCard";
+import FilterOptions from "../FilterSelect/FilterSelect";
 
 type IHeaderProps = {
   onRefresh: () => void;
@@ -22,7 +23,11 @@ const Header: React.FunctionComponent<IHeaderProps> = ({
 
   return (
     <header className="header d-flex justify-content-between">
-      <h1 className="header__title">Match Tracker</h1>
+      <div className="header__title d-flex align-items-center">
+        <h1 className="header__logo">Match Tracker</h1>
+        <FilterOptions />
+      </div>
+
       <div className="header__controls d-flex">
         {isError && <ErrorCard />}
         <button

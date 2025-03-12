@@ -31,6 +31,7 @@
   --color-background-card: #0b0e12;
   --color-background-card-details: #101318;
   --color-text-medium: rgba(250, 250, 250, 0.4);
+  --color-btn-filter: #b4b5b6;
   --color-text: #ffffff;
   --color-card-status-live: #43ad28;
   --color-card-status-finished: #eb0237;
@@ -57,33 +58,14 @@ body {
   padding: 0;
 }
 
+p {
+  margin-bottom: 0;
+}
+
 .text--medium {
   font-size: 0.875rem;
   font-weight: var(--font-weight-medium);
   color: var(--color-text-medium);
-  margin-right: 8px;
-}
-
-.d-flex {
-  display: flex;
-}
-.justify-content-between {
-  justify-content: space-between;
-}
-.justify-content-center {
-  justify-content: center;
-}
-.align-items-center {
-  align-items: center;
-}
-.flex-nowrap {
-  flex-wrap: nowrap;
-}
-.flex-row-reverse {
-  flex-direction: row-reverse;
-}
-.flex-column {
-  flex-direction: column;
 }
 
 /* Media запрос */

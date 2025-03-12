@@ -2,7 +2,12 @@
 .header {
   margin-bottom: 20px;
 }
+
 .header__title {
+  gap: 24px;
+}
+
+.header__logo {
   font-family: var(--font-family-title);
   font-weight: var(--font-weight-black);
   font-size: 2rem;
@@ -55,7 +60,7 @@
 }
 
 /* Media запросы */
-@media screen and (max-width: 880px) {
+@media screen and (max-width: 1030px) {
   .header__controls {
     flex-direction: column-reverse;
     align-items: end;
@@ -73,7 +78,7 @@
     flex-direction: column;
     align-items: center;
   }
-  .header__title {
+  .header__logo {
     margin-bottom: 14px;
   }
   .header__controls {

@@ -13,7 +13,7 @@ const PlayerCard: React.FunctionComponent<
     <div className="player d-flex justify-content-between align-items-center">
       <div className="player__username d-flex align-items-center">
         <img src={avatar} alt="avatar" />
-        <h3>{player.username}</h3>
+        <p>{player.username}</p>
       </div>
 
       <div className="player__kills d-flex align-items-center">

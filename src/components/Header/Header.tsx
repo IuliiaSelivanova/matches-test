@@ -33,7 +33,7 @@ const Header: React.FunctionComponent = () => {
         {error && <ErrorCard />}
         <button
           type="button"
-          className={`btn-refresh btn d-flex justify-content-center align-items-center flex-nowrap ${
+          className={`btn-refresh d-flex justify-content-center align-items-center flex-nowrap ${
             isFetching ? "loading" : ""
           }`}
           onClick={refetch}

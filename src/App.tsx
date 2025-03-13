@@ -1,11 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Header from "./components/Header/Header";
 import GameList from "./components/GameList/GameList";
 import { useDispatch } from "react-redux";
 
 function App() {
-  const [isError, setIsError] = useState(false);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -14,7 +12,7 @@ function App() {
 
   return (
     <div className="app">
-      <Header isError={isError} />
+      <Header />
       <GameList />
     </div>
   );

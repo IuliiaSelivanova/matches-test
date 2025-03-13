@@ -1,29 +1,27 @@
 import btnIcon from "../../assets/icon-refresh.svg";
 import "../../styles/header.css";
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import ErrorCard from "../Error/ErrorCard";
 import FilterOptions from "../FilterSelect/FilterSelect";
+import { useGetMatchesQuery } from "../../Redux/features/api/apiSlice";
+import { useDispatch } from "react-redux";
+import { setMatchesFromAPI } from "../../Redux/features/matches/matchesSlice";
 
-type IHeaderProps = {
-  // onRefresh: () => void;
-  isError: boolean;
-};
+const Header: React.FunctionComponent = () => {
+  const dispatch = useDispatch();
+  const {
+    data: matches,
+    error,
+    isFetching,
+    refetch,
+  } = useGetMatchesQuery();
 
-const Header: React.FunctionComponent<IHeaderProps> = ({
-  // onRefresh,
-  isError,
-}) => {
-  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
+    if (matches) {
+      dispatch(setMatchesFromAPI(matches));
+    }
+  }, [matches, dispatch]);
 
-  const handleRefresh = async () => {
-    setIsLoading(true);
-    // await onRefresh();
-    setIsLoading(false);
-  };
-
-  // useEffect(() => {
-  //   fetchMatches();
-  // }, [fetchMatches]);
   return (
     <header className="header d-flex justify-content-between">
       <div className="header__title d-flex">
@@ -32,19 +30,18 @@ const Header: React.FunctionComponent<IHeaderProps> = ({
       </div>
 
       <div className="header__controls d-flex">
-        {/* {isError && <ErrorCard />} */}
-        {<ErrorCard />}
+        {error && <ErrorCard />}
         <button
           type="button"
           className={`btn-refresh btn d-flex justify-content-center align-items-center flex-nowrap ${
-            isLoading ? "loading" : ""
+            isFetching ? "loading" : ""
           }`}
-          onClick={handleRefresh}
-          disabled={isLoading}
+          onClick={refetch}
+          disabled={isFetching}
         >
           Обновить
           <img
-            className={isLoading ? "loading" : ""}
+            className={isFetching ? "loading" : ""}
             src={btnIcon}
             alt="loading icon"
           />

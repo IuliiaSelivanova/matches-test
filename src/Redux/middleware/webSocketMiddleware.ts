@@ -1,8 +1,8 @@
 import { Action, Middleware } from "@reduxjs/toolkit";
 import { setMatches } from "../features/matches/matchesSlice";
-import { IMatch } from "../../types/types";
 import { SOCKET_URL } from "../../utils/urls";
 import { formatStatus } from "../../utils/formatStatus";
+import { addIds } from "../../utils/addIdsToMatches";
 
 export const webSocketMiddleware: Middleware = (store) => {
   let socket: WebSocket | null = null;
@@ -29,19 +29,15 @@ export const webSocketMiddleware: Middleware = (store) => {
         const data = JSON.parse(e.data);
 
         // добавляем уникальный id
-        const matchesWithIds: IMatch[] = data.data.map(
-          (match: IMatch) => ({
-            ...match,
-            // устанавливаем id на уникальное значение match, поскольку с сервера не приходит
-            id: match.title,
-          }),
-        );
+        const matchesWithIds = addIds(data.data);
+
+        store.dispatch(setMatches(matchesWithIds));
 
         // получаем текущий фильтр
         const currentFilter =
           store.getState().matches.filterOption;
 
-        // сохранение фильтрации при обновлении данных
+        // фильтрация данных по текущему фильтру
         if (currentFilter !== "Все статусы") {
           const filteredMatches = matchesWithIds.filter(
             (match) =>
@@ -49,9 +45,6 @@ export const webSocketMiddleware: Middleware = (store) => {
               currentFilter,
           );
           store.dispatch(setMatches(filteredMatches));
-        } else {
-          // сохраняем в store обновленные данные
-          store.dispatch(setMatches(matchesWithIds));
         }
       };
 

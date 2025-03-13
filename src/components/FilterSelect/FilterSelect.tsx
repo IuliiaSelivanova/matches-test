@@ -21,10 +21,10 @@ const FilterSelect = () => {
     if (option.disabled) return;
     dispatch(filterMatches(option.label));
 
-    // setIsOpen(false);
+    setIsOpen(false);
   };
 
-  // закрытие dropdown-menu по клику все dropdown
+  // закрытие dropdown-menu по клику вокруг dropdown
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (

@@ -3,71 +3,93 @@
   background: var(--color-background-card);
   border-radius: var(--border-radius);
   padding-inline: 36px;
-  padding-block: 19.5px;
+  padding-block: 16px;
   border-radius: var(--border-radius);
   cursor: default;
   margin-bottom: 12px;
 }
 
+.gameCard__common {
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  grid-template-rows: 1fr;
+  grid-template-areas: "away score home arrow";
+  gap: 12px;
+}
+
 /* Блоки с командами */
-.gameCard__team--away img {
-  margin-right: 17px;
+.gameCard__team {
+  gap: 17px;
 }
 .gameCard__team--away {
-  margin-right: 8px;
-}
-.gameCard__team--home img {
-  margin-left: 17px;
+  grid-area: away;
 }
 .gameCard__team--home {
-  margin-left: 8px;
+  grid-area: home;
 }
 .gameCard__team img {
   width: 48px;
 }
 
 /* Счет матча */
-.gameCard__score p {
-  margin-bottom: 9px;
-  font-size: 1.25rem;
+.gameCard__score {
+  grid-area: score;
 }
 
-/* Бэйдж со статусом */
-.gameCard__status {
-  font-size: 0.75rem;
-  padding: 8px 34px;
-  border-radius: var(--border-radius);
+/* Стрелка dropdown */
+.dropDownArrow {
+  grid-area: arrow;
+  width: 28px;
+  height: 29px;
 }
-.gameCard__status--live {
-  background-color: var(--color-card-status-live);
+.dropDownArrow--desktop {
+  align-self: center;
 }
-.gameCard__status--finished {
-  background-color: var(--color-card-status-finished);
+.dropDownArrow--mobile {
+  display: none;
 }
-.gameCard__status--preparing {
-  background-color: var(--color-card-status-preparing);
+
+.gameCard__details--flexGrow {
+  flex-grow: 1;
 }
 
 /* Media запросы */
+@media screen and (max-width: 1100px) {
+  .gameCard {
+    padding-block: 8px;
+  }
+  .gameCard__common {
+    gap: 6px;
+  }
+  .dropDownArrow--desktop {
+    display: none;
+  }
+  .dropDownArrow--mobile {
+    display: block;
+    align-self: center;
+    padding-top: 8px;
+    padding-bottom: 0;
+  }
+  .dropDownArrow--mobile.open {
+    transform: rotate(180deg);
+    padding-top: 0;
+    padding-bottom: 8px;
+  }
+
+  .gameCard__details {
+    flex-direction: column;
+  }
+}
 @media screen and (max-width: 630px) {
   .gameCard {
     padding: 8px;
   }
-  .gameCard__team--away img {
-    margin-right: 6px;
-  }
-  .gameCard__team--home img {
-    margin-left: 6px;
+  .gameCard__team {
+    font-size: 0.85rem;
+    gap: 6px;
   }
   .gameCard__team img {
     width: 28px;
-  }
-  .gameCard__score p {
-    margin-bottom: 7px;
-    font-size: 1rem;
-  }
-  .gameCard__status {
-    font-size: 0.85rem;
-    padding: 4px 23px;
   }
 }

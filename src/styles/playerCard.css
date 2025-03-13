@@ -1,0 +1,31 @@
+/* Карточка игрока */
+.player {
+  background-color: var(--color-background-card-details);
+  padding: 8px 24px;
+  border-radius: var(--border-radius);
+
+  gap: 4px 6px;
+  flex-grow: 1;
+}
+
+/* Если username будет слишком длинный скрыть его по горизонтали */
+.player__username p {
+  max-width: 90px;
+  overflow-x: hidden;
+}
+
+/* Отступ от аватарки игрока */
+.player__username {
+  gap: 8px;
+}
+
+.player__kills {
+  gap: 8px;
+}
+
+@media screen and (max-width: 1720px) {
+  .player {
+    padding: 12px;
+    flex-direction: column;
+  }
+}

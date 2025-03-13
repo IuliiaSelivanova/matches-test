@@ -1,23 +1,35 @@
-import { IMatch } from "../../types/types.ts";
+import { useDispatch, useSelector } from "react-redux";
 import GameCard from "../GameCard/GameCard.tsx";
+import { RootState } from "../../Redux/Store.ts";
+import { toggleMatch } from "../../Redux/features/matches/matchesSlice.ts";
 
-interface GameListProps {
-  matches: IMatch[] | null;
-}
+const GameList: React.FunctionComponent = () => {
+  // получение данных из Redux
+  const matches = useSelector(
+    (state: RootState) => state.matches.matches,
+  );
+  const dispatch = useDispatch();
+  const isOpenMatches = useSelector(
+    (state: RootState) => state.matches.isOpenMatches,
+  );
 
-const GameList: React.FunctionComponent<GameListProps> = ({
-  matches,
-}) => {
   return (
-    <>
-      {matches ? (
-        matches.map((match, index) => (
-          <GameCard key={index} match={match} />
+    <div className="gameList">
+      {matches.length > 0 ? (
+        matches.map((match) => (
+          <GameCard
+            key={match.id}
+            match={match}
+            isOpen={!!isOpenMatches[match.id]}
+            toggleMatch={() =>
+              dispatch(toggleMatch(match.id))
+            }
+          />
         ))
       ) : (
         <div></div>
       )}
-    </>
+    </div>
   );
 };
 

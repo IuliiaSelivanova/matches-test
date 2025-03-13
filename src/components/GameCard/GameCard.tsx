@@ -1,69 +1,86 @@
+import React from "react";
 import teamIcon from "../../assets/icon-team.png";
 import "../../styles/gameCard.css";
 import { IMatch } from "../../types/types.ts";
+import dropdownIcon from "../../assets/arrow-drop.svg";
+import Score from "../Score/Score.tsx";
+import MatchDetails from "../MatchDetails/MatchDetails.tsx";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface GameCardProps {
   match: IMatch;
+  isOpen: boolean;
+  toggleMatch: () => void;
 }
-
-type TCheckStatus = {
-  classname: string;
-  text: string;
-};
 
 const GameCard: React.FunctionComponent<GameCardProps> = ({
   match,
+  isOpen,
+  toggleMatch,
 }) => {
   if (!match) return null;
-  const checkStatus = (status: string): TCheckStatus => {
-    switch (status) {
-      case "Finished":
-        return {
-          classname: "gameCard__status--live",
-          text: "Live",
-        };
-      case "Ongoing":
-        return {
-          classname: "gameCard__status--finished",
-          text: "Finished",
-        };
-      case "Scheduled":
-        return {
-          classname: "gameCard__status--preparing",
-          text: "Match preparing",
-        };
-      default:
-        return {
-          classname: "",
-          text: "",
-        };
-    }
-  };
 
   return (
-    <section className="gameCard d-flex justify-content-between">
-      <div className="gameCard__team gameCard__team--away d-flex align-items-center">
-        <img src={teamIcon} alt="icon team" />
-        <p>{match.awayTeam.name}</p>
-      </div>
+    <motion.section
+      className="gameCard"
+      layout
+      transition={{ type: "spring", stiffness: 120 }}
+    >
+      <div
+        className="gameCard__common"
+        onClick={toggleMatch}
+      >
+        <div className="gameCard__team gameCard__team--away d-flex align-items-center">
+          <img src={teamIcon} alt="icon team" />
+          <p>{match.awayTeam.name}</p>
+        </div>
 
-      <div className="gameCard__score d-flex flex-column justify-content-center align-items-center">
-        <p>{`${match.awayScore} : ${match.homeScore}`}</p>
+        <div className="gameCard__score">
+          <Score
+            homeScore={match.homeScore}
+            awayScore={match.awayScore}
+            status={match.status}
+          />
+        </div>
+
+        <div className="gameCard__team gameCard__team--home d-flex flex-row-reverse align-items-center">
+          <img src={teamIcon} alt="icon team" />
+          <p>{match.homeTeam.name}</p>
+        </div>
 
         <div
-          className={`gameCard__status ${
-            checkStatus(match.status).classname
+          className={`dropDownArrow dropDownArrow--desktop ${
+            isOpen && "open"
           }`}
         >
-          {checkStatus(match.status).text}
+          <img src={dropdownIcon} alt="dropdown icon" />
         </div>
       </div>
 
-      <div className="gameCard__team gameCard__team--home d-flex flex-row-reverse align-items-center">
-        <img src={teamIcon} alt="icon team" />
-        <p>{match.homeTeam.name}</p>
+      <div className="gameCard__details d-flex">
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              className="gameCard__details--flexGrow"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <MatchDetails match={match} />
+            </motion.div>
+          )}
+        </AnimatePresence>
+        <div
+          className={`dropDownArrow dropDownArrow--mobile ${
+            isOpen && "open"
+          }`}
+          onClick={toggleMatch}
+        >
+          <img src={dropdownIcon} alt="dropdown icon" />
+        </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

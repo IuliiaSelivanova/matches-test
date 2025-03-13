@@ -5,12 +5,14 @@
   font-weight: var(--font-weight-medium);
   font-size: 1.125rem;
   border-radius: var(--border-radius);
-  margin-right: 12px;
+  gap: 10px;
 }
 .error img {
   width: 28px;
-  margin-right: 10px;
 }
-.error p {
-  margin: 0;
+
+@media screen and (max-width: 815px) {
+  .error {
+    width: 100%;
+  }
 }
